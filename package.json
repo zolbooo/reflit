@@ -1,8 +1,9 @@
 {
   "name": "reflit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ReFlit - based on React, inspired by Flutter",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
