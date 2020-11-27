@@ -11,3 +11,7 @@ export const Text = reforwardJSX<
 export const Label = reforwardJSX<
   Omit<JSX.IntrinsicElements['label'], 'children'>
 >('label');
+
+export const LineBreak = reforwardJSX<
+  Omit<JSX.IntrinsicElements['br'], 'children'>
+>('br');
