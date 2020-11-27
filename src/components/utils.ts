@@ -3,5 +3,5 @@ import type { ReactNode } from 'react';
 
 export function reforwardJSX<P>(element: string) {
   return (props: P, ...children: ReactNode[]) =>
-    createElement(element, props, ...children);
+    createElement(element, props ?? {}, ...children);
 }
