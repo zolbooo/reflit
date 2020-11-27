@@ -1,5 +1,9 @@
 import { reforwardJSX } from './utils';
 
+export const Paragraph = reforwardJSX<
+  Omit<JSX.IntrinsicElements['p'], 'children'>
+>('p');
+
 export const Text = reforwardJSX<
   Omit<JSX.IntrinsicElements['span'], 'children'>
 >('span');
