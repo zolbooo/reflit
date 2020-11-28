@@ -3,9 +3,7 @@ import type { ReactNode } from 'react';
 
 import { reforwardJSX } from './utils';
 
-export const Link = reforwardJSX<Omit<JSX.IntrinsicElements['a'], 'children'>>(
-  'a',
-);
+export const Link = reforwardJSX<JSX.IntrinsicElements['a']>('a');
 
 export const Fragment = (...children: ReactNode[]) =>
   createElement(ReactFragment, {}, ...children);

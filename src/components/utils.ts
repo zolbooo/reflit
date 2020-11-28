@@ -1,7 +1,9 @@
 import { forwardRef, createElement } from 'react';
 import type { ReactNode } from 'react';
 
-export function reforwardJSX<P>(element: string) {
+export function reforwardJSX<Props, P = Omit<Props, 'children'>>(
+  element: string,
+) {
   if (process.env.NODE_ENV === 'development') {
     // Create element factor callback for React DevTools
     const fn = (
