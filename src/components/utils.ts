@@ -22,3 +22,21 @@ export function reforwardJSX<Props, P = Omit<Props, 'children'>>(
   return (props?: P, ...children: ReactNode[]) =>
     createElement(element, props ?? {}, ...children);
 }
+
+type FunctionalComponentFactory<P> = (
+  props: P & JSX.IntrinsicAttributes & { children: ReactNode | ReactNode[] },
+) => ReactNode | ReactNode[];
+export function FunctionalComponent<P>(factory: FunctionalComponentFactory<P>) {
+  return (props?: P & JSX.IntrinsicAttributes, ...children: ReactNode[]) =>
+    createElement(factory as any, props, children);
+}
+export function VoidFunctionalComponent<P>(
+  factory: FunctionalComponentFactory<P>,
+) {
+  return (props?: P & JSX.IntrinsicAttributes) => {
+    if (props) {
+      delete (props as any).children;
+    }
+    return createElement(factory as any, props);
+  };
+}
