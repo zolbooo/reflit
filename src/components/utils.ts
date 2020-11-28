@@ -14,7 +14,7 @@ export function reforwardJSX<P>(element: string) {
       writable: false,
     });
 
-    return (props: P, ...children: ReactNode[]) =>
+    return (props?: P, ...children: ReactNode[]) =>
       createElement(forwardRef(fn) as any, { ...props, children });
   }
   return (props?: P, ...children: ReactNode[]) =>
