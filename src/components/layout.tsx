@@ -10,6 +10,9 @@ export const List = reforwardJSX<Omit<JSX.IntrinsicElements['ul'], 'children'>>(
 export const OrderedList = reforwardJSX<
   Omit<JSX.IntrinsicElements['ol'], 'children'>
 >('ol');
+export const ListItem = reforwardJSX<
+  Omit<JSX.IntrinsicElements['li'], 'children'>
+>('li');
 
 export const Image = reforwardJSX<
   Omit<JSX.IntrinsicElements['img'], 'children'>
