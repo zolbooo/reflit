@@ -10,11 +10,23 @@ export const Link = reforwardJSX<Omit<JSX.IntrinsicElements['a'], 'children'>>(
 export const Fragment = (...children: ReactNode[]) =>
   createElement(ReactFragment, {}, ...children);
 
-export function FC<P>(
-  factory: (
-    props: P & JSX.IntrinsicAttributes & { children: ReactNode | ReactNode[] },
-  ) => ReactNode | ReactNode[],
-) {
+type FunctionalComponentFactory<P> = (
+  props: P & JSX.IntrinsicAttributes & { children: ReactNode | ReactNode[] },
+) => ReactNode | ReactNode[];
+function FunctionalComponent<P>(factory: FunctionalComponentFactory<P>) {
   return (props?: P & JSX.IntrinsicAttributes, ...children: ReactNode[]) =>
     createElement(factory as any, props, children);
 }
+function VoidFunctionalComponent<P>(factory: FunctionalComponentFactory<P>) {
+  return (props?: P & JSX.IntrinsicAttributes) => {
+    if (props) {
+      delete (props as any).children;
+    }
+    return createElement(factory as any, props);
+  };
+}
+
+export const FC: typeof FunctionalComponent & {
+  void: typeof FunctionalComponent;
+} = FunctionalComponent as any;
+FC.void = VoidFunctionalComponent;
