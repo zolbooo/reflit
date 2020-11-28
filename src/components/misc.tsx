@@ -12,9 +12,9 @@ export const Fragment = (...children: ReactNode[]) =>
 
 export function FC<P>(
   factory: (
-    props: P & { children: ReactNode | ReactNode[] },
+    props: P & JSX.IntrinsicAttributes & { children: ReactNode | ReactNode[] },
   ) => ReactNode | ReactNode[],
 ) {
-  return (props?: P, ...children: ReactNode[]) =>
+  return (props?: P & JSX.IntrinsicAttributes, ...children: ReactNode[]) =>
     createElement(factory as any, props, children);
 }
