@@ -10,7 +10,11 @@ export const Link = reforwardJSX<Omit<JSX.IntrinsicElements['a'], 'children'>>(
 export const Fragment = (...children: ReactNode[]) =>
   createElement(ReactFragment, {}, ...children);
 
-export function FC<P>(factory: any) {
+export function FC<P>(
+  factory: (
+    props: P & { children: ReactNode | ReactNode[] },
+  ) => ReactNode | ReactNode[],
+) {
   return (props?: P, ...children: ReactNode[]) =>
-    createElement(factory, props, children);
+    createElement(factory as any, props, children);
 }
